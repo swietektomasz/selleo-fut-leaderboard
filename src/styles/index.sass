@@ -1,2 +1,18 @@
-body
-  background-color: white
+@import './components/Navbar/_navbar'
+  
+.container,
+.content-body
+  display: flex
+  flex-direction: column
+
+.navbar-container
+  order: -1
+
+@media (min-width: 768px)
+  .content-body
+    flex-direction: row
+    flex: 1
+  .content
+    flex: 1
+  .navbar-container
+    flex: 0 0 12em
