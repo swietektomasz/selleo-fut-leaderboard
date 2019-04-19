@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
-class TournamentList extends Component {
+class List extends Component {
   render() {
     return (
       <ul>
@@ -10,8 +10,8 @@ class TournamentList extends Component {
         <li>fourth tournament</li>
         <li>last tournament</li>
       </ul>
-    );
+    )
   }
 }
 
-export default TournamentList;
+export default List
