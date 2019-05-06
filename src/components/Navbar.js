@@ -1,33 +1,26 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 class Navbar extends Component {
   render() {
+    const { history } = this.props
+
     return (
       <header className="nav">
-        <div className="nav__box">
-          <NavLink className="nav__link" to="/home">
-            Home
-          </NavLink>
+        <div className="nav__box" onClick={() => history.push('/home/')}>
+          home
         </div>
-        <div className="nav__box">
-          <NavLink className="nav__link" to="/tournaments">
-            Tournaments
-          </NavLink>
-        </div>
-        <div className="nav__box">
-          <NavLink className="nav__link" to="/home">
-            Matches
-          </NavLink>
-        </div>
-        <div className="nav__box">
-          <NavLink className="nav__link" to="/home">
-            Players
-          </NavLink>
+        <div className="nav__box" onClick={() => history.push('/tournaments/')}>
+          tournaments
         </div>
       </header>
     )
   }
 }
 
-export default Navbar
+Navbar.propTypes = {
+  history: PropTypes.object,
+}
+
+export default withRouter(Navbar)

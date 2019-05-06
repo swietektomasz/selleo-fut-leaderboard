@@ -1,4 +1,9 @@
-import { GET_TOURNAMENTS, GET_TOURNAMENTS_ERROR, GET_TOURNAMENTS_LOADING } from './types'
+import {
+  GET_TOURNAMENTS,
+  GET_TOURNAMENTS_ERROR,
+  GET_TOURNAMENTS_LOADING,
+  GET_SINGLE_TOURNAMENT,
+} from './types'
 
 const tournaments = (state = { error: false, loading: true, nodes: [] }, { payload, type }) => {
   switch (type) {
@@ -10,6 +15,9 @@ const tournaments = (state = { error: false, loading: true, nodes: [] }, { paylo
     }
     case GET_TOURNAMENTS_LOADING: {
       return { error: false, loading: true, nodes: [] }
+    }
+    case GET_SINGLE_TOURNAMENT: {
+      return { error: false, loading: false, nodes: [{ payload }] }
     }
     default:
       return state
