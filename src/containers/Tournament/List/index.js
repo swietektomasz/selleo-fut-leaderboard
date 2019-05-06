@@ -4,14 +4,11 @@ import { getTournaments, createTournament } from '../../../store/tournaments/act
 import PropTypes from 'prop-types'
 
 import Tournament from './Item'
+import Create from './Create'
 
 class List extends Component {
   componentDidMount = () => {
     this.props.getTournaments()
-  }
-
-  _createTournament = () => {
-    this.props.createTournament()
   }
 
   render() {
@@ -39,7 +36,7 @@ class List extends Component {
             />
           ))}
         </div>
-        <button onClick={this._createTournament} />
+        <Create />
       </div>
     )
   }

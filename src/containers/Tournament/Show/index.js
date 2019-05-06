@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
-import { getSingleTournament } from '../../../store/tournaments/actions'
+import { getTournament } from '../../../store/tournaments/actions'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 class Show extends Component {
   componentDidMount = () => {
-    this.props.getSingleTournament(this.props.match.params.id)
+    this.props.getTournament(this.props.match.params.id)
   }
 
   render() {
     const {
-      tournaments: { loading, error, nodes },
+      tournaments: { loading, error },
     } = this.props
 
     if (loading) {
@@ -21,7 +21,7 @@ class Show extends Component {
       return <div>Error</div>
     }
 
-    return <div>a tournament of id: {nodes[0].id}</div>
+    return <div>a tournament of id:</div>
   }
 }
 
@@ -32,7 +32,7 @@ const mapStateToProps = ({ tournaments }) => {
 }
 
 const mapDispatchToProps = {
-  getSingleTournament,
+  getTournament,
 }
 
 export default withRouter(
@@ -44,6 +44,6 @@ export default withRouter(
 
 Show.propTypes = {
   match: PropTypes.object,
-  getSingleTournament: PropTypes.func,
+  getTournament: PropTypes.func,
   tournaments: PropTypes.object,
 }

@@ -2,7 +2,7 @@ import {
   GET_TOURNAMENTS,
   GET_TOURNAMENTS_ERROR,
   GET_TOURNAMENTS_LOADING,
-  GET_SINGLE_TOURNAMENT,
+  GET_TOURNAMENT,
 } from './types'
 import client from '../../utils/apiClient'
 
@@ -21,8 +21,8 @@ const _getTournamentsLoading = payload => ({
   payload,
 })
 
-const _getSingleTournament = payload => ({
-  type: GET_SINGLE_TOURNAMENT,
+const _getTournament = payload => ({
+  type: GET_TOURNAMENT,
   payload,
 })
 
@@ -46,12 +46,12 @@ export const createTournament = () => {
   }
 }
 
-export const getSingleTournament = id => {
+export const getTournament = id => {
   return dispatch => {
     dispatch(_getTournamentsLoading)
 
     client(`/tournaments/${id}`, {})
-      .then(data => dispatch(_getSingleTournament(data)))
+      .then(data => dispatch(_getTournament(data)))
       .catch(error => dispatch(_getTournamentsError(error)))
   }
 }
