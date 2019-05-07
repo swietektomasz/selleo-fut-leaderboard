@@ -9,7 +9,11 @@ class Create extends Component {
     this.props.createTournament()
   }
   render() {
-    return <button onClick={this._createTournament} />
+    return (
+      <button className="create-btn" onClick={this._createTournament}>
+        New tournament
+      </button>
+    )
   }
 }
 

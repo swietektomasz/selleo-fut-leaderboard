@@ -1,17 +1,39 @@
 import React, { Component } from 'react'
-import { getTournament } from '../../../store/tournaments/actions'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
+import isEmpty from 'lodash/isEmpty'
+
+import { getTournament, updateTournament } from '../../../store/tournaments/actions'
+import MatchForm from './Form/MatchForm'
+
 class Show extends Component {
   componentDidMount = () => {
-    this.props.getTournament(this.props.match.params.id)
+    const {
+      activeTournament,
+      getTournament,
+      match: {
+        params: { id },
+      },
+    } = this.props
+
+    if (
+      isEmpty(activeTournament) ||
+      (activeTournament && activeTournament.id.toString() !== id.toString())
+    ) {
+      getTournament(id)
+    }
+  }
+
+  _finishTournament = () => {
+    const {
+      activeTournament: { id },
+    } = this.props
+    updateTournament(id)
   }
 
   render() {
-    const {
-      tournaments: { loading, error },
-    } = this.props
+    const { activeTournament, loading, error } = this.props
 
     if (loading) {
       return <div>Loading</div>
@@ -21,18 +43,39 @@ class Show extends Component {
       return <div>Error</div>
     }
 
-    return <div>a tournament of id:</div>
+    return (
+      <div className="cards">
+        <div className="card">
+          <div className="card__header">
+            <div className="card__title">
+              <h3>{activeTournament.name}</h3>
+            </div>
+          </div>
+          <div className="card__summary">
+            {activeTournament.matches.map(match => <MatchForm key={match.id} match={match} />)}
+          </div>
+          <div>
+            <button className="create-btn" onClick={this._finishTournament}>
+              finish tournament
+            </button>
+          </div>
+        </div>
+      </div>
+    )
   }
 }
 
-const mapStateToProps = ({ tournaments }) => {
+const mapStateToProps = ({ tournaments: { activeTournament, loading, error } }) => {
   return {
-    tournaments,
+    activeTournament,
+    loading,
+    error,
   }
 }
 
 const mapDispatchToProps = {
   getTournament,
+  updateTournament,
 }
 
 export default withRouter(

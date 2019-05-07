@@ -20,11 +20,11 @@ export class Item extends Component {
   }
 }
 
+export default withRouter(Item)
+
 Item.propTypes = {
   title: PropTypes.string,
   date: PropTypes.string,
   id: PropTypes.number,
   history: PropTypes.object,
 }
-
-export default withRouter(Item)

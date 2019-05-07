@@ -3,6 +3,8 @@ import {
   GET_TOURNAMENTS_ERROR,
   GET_TOURNAMENTS_LOADING,
   GET_TOURNAMENT,
+  UPDATE_MATCH,
+  UPDATE_TOURNAMENT,
 } from './types'
 import client from '../../utils/apiClient'
 
@@ -23,6 +25,16 @@ const _getTournamentsLoading = payload => ({
 
 const _getTournament = payload => ({
   type: GET_TOURNAMENT,
+  payload,
+})
+
+const _updateMatch = payload => ({
+  type: UPDATE_MATCH,
+  payload,
+})
+
+const _updateTournament = payload => ({
+  type: UPDATE_TOURNAMENT,
   payload,
 })
 
@@ -52,6 +64,29 @@ export const getTournament = id => {
 
     client(`/tournaments/${id}`, {})
       .then(data => dispatch(_getTournament(data)))
+      .catch(error => dispatch(_getTournamentsError(error)))
+  }
+}
+
+export const updateMatch = (tournamentId, match) => {
+  return dispatch => {
+    dispatch(_getTournamentsLoading)
+
+    client(`tournaments/${tournamentId}/matches/${match.id}`, {
+      body: JSON.stringify(match),
+      method: 'PATCH',
+    })
+      .then(data => dispatch(_updateMatch(data)))
+      .catch(error => dispatch(_getTournamentsError(error)))
+  }
+}
+
+export const updateTournament = id => {
+  return dispatch => {
+    dispatch(_getTournamentsLoading)
+
+    client(`/tournaments/${id}`, {})
+      .then(data => dispatch(_updateTournament(data)))
       .catch(error => dispatch(_getTournamentsError(error)))
   }
 }

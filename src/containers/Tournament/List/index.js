@@ -9,6 +9,7 @@ import Create from './Create'
 class List extends Component {
   componentDidMount = () => {
     this.props.getTournaments()
+    console.log(this.props.tournaments.nodes)
   }
 
   render() {
