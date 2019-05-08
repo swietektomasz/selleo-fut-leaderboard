@@ -44,14 +44,14 @@ class Show extends Component {
     }
 
     return (
-      <div className="cards">
-        <div className="card">
-          <div className="card__header">
-            <div className="card__title">
+      <div className="matches">
+        <div className="match">
+          <div className="match__header">
+            <div className="match__title">
               <h3>{activeTournament.name}</h3>
             </div>
           </div>
-          <div className="card__summary">
+          <div className="match__summary">
             {activeTournament.matches.map(match => <MatchForm key={match.id} match={match} />)}
           </div>
           <div>
@@ -88,5 +88,7 @@ export default withRouter(
 Show.propTypes = {
   match: PropTypes.object,
   getTournament: PropTypes.func,
-  tournaments: PropTypes.object,
+  activeTournament: PropTypes.object,
+  loading: PropTypes.bool,
+  error: PropTypes.bool,
 }

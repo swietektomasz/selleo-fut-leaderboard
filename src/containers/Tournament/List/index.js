@@ -9,7 +9,6 @@ import Create from './Create'
 class List extends Component {
   componentDidMount = () => {
     this.props.getTournaments()
-    console.log(this.props.tournaments.nodes)
   }
 
   render() {
@@ -61,6 +60,5 @@ export default connect(
 
 List.propTypes = {
   getTournaments: PropTypes.func,
-  createTournament: PropTypes.func,
   tournaments: PropTypes.object,
 }

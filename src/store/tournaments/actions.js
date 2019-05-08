@@ -85,7 +85,7 @@ export const updateTournament = id => {
   return dispatch => {
     dispatch(_getTournamentsLoading)
 
-    client(`/tournaments/${id}`, {})
+    client(`tournaments/${id}`, { method: 'POST' })
       .then(data => dispatch(_updateTournament(data)))
       .catch(error => dispatch(_getTournamentsError(error)))
   }
