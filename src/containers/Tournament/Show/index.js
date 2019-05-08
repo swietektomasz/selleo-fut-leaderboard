@@ -5,7 +5,8 @@ import { withRouter } from 'react-router-dom'
 import isEmpty from 'lodash/isEmpty'
 
 import { getTournament, updateTournament } from '../../../store/tournaments/actions'
-import MatchForm from './Form/MatchForm'
+import MatchForm from './Form'
+import Stats from './Stats'
 
 class Show extends Component {
   componentDidMount = () => {
@@ -28,7 +29,9 @@ class Show extends Component {
   _finishTournament = () => {
     const {
       activeTournament: { id },
+      updateTournament,
     } = this.props
+
     updateTournament(id)
   }
 
@@ -60,6 +63,7 @@ class Show extends Component {
             </button>
           </div>
         </div>
+        <Stats />
       </div>
     )
   }
@@ -88,6 +92,7 @@ export default withRouter(
 Show.propTypes = {
   match: PropTypes.object,
   getTournament: PropTypes.func,
+  updateTournament: PropTypes.func,
   activeTournament: PropTypes.object,
   loading: PropTypes.bool,
   error: PropTypes.bool,

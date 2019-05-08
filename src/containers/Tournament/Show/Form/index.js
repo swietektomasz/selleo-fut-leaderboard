@@ -66,4 +66,6 @@ export default connect(
 
 MatchForm.propTypes = {
   match: PropTypes.object,
+  activeTournament: PropTypes.object,
+  updateMatch: PropTypes.func,
 }
