@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Row from './Row'
 
-class Stats extends Component {
+class Table extends Component {
   render() {
     const {
       activeTournament: { table },
@@ -37,8 +37,8 @@ const mapStateToProps = ({ tournaments: { activeTournament } }) => {
 export default connect(
   mapStateToProps,
   null,
-)(Stats)
+)(Table)
 
-Stats.propTypes = {
+Table.propTypes = {
   activeTournament: PropTypes.object,
 }

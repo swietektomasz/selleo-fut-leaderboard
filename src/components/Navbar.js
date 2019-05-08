@@ -14,6 +14,9 @@ class Navbar extends Component {
         <div className="nav__box" onClick={() => history.push('/tournaments/')}>
           tournaments
         </div>
+        <div className="nav__box" onClick={() => history.push('/stats/')}>
+          stats
+        </div>
       </header>
     )
   }

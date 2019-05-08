@@ -6,7 +6,7 @@ import isEmpty from 'lodash/isEmpty'
 
 import { getTournament, updateTournament } from '../../../store/tournaments/actions'
 import MatchForm from './Form'
-import Stats from './Stats'
+import Table from './Table'
 
 class Show extends Component {
   componentDidMount = () => {
@@ -63,7 +63,7 @@ class Show extends Component {
             </button>
           </div>
         </div>
-        <Stats />
+        <Table />
       </div>
     )
   }

@@ -5,6 +5,7 @@ import {
   GET_TOURNAMENT,
   UPDATE_MATCH,
   UPDATE_TOURNAMENT,
+  GET_STATS,
 } from './types'
 import client from '../../utils/apiClient'
 
@@ -35,6 +36,11 @@ const _updateMatch = payload => ({
 
 const _updateTournament = payload => ({
   type: UPDATE_TOURNAMENT,
+  payload,
+})
+
+const _getStats = payload => ({
+  type: GET_STATS,
   payload,
 })
 
@@ -90,6 +96,16 @@ export const updateTournament = id => {
       method: 'PATCH',
     })
       .then(data => dispatch(_updateTournament(data)))
+      .catch(error => dispatch(_getTournamentsError(error)))
+  }
+}
+
+export const getStats = () => {
+  return dispatch => {
+    dispatch(_getTournamentsLoading)
+
+    client('/stats', {})
+      .then(data => dispatch(_getStats(data)))
       .catch(error => dispatch(_getTournamentsError(error)))
   }
 }

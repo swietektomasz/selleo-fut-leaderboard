@@ -5,10 +5,11 @@ import {
   GET_TOURNAMENT,
   UPDATE_MATCH,
   UPDATE_TOURNAMENT,
+  GET_STATS,
 } from './types'
 
 const tournaments = (
-  state = { error: false, loading: true, nodes: [], activeTournament: {} },
+  state = { error: false, loading: true, nodes: [], activeTournament: {}, stats: {} },
   { payload, type },
 ) => {
   switch (type) {
@@ -45,6 +46,9 @@ const tournaments = (
         loading: false,
         activeTournament: payload,
       }
+    }
+    case GET_STATS: {
+      return { ...state, error: false, loading: false, stats: payload }
     }
     default:
       return state
