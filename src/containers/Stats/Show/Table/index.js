@@ -22,8 +22,8 @@ class Table extends Component {
           <div className="column">Goals Difference</div>
           <div className="column">Points</div>
         </div>
-        {Object.entries(table).map(([playerName, playerData]) => (
-          <Row key={playerName} playerName={playerName} stats={playerData} />
+        {Object.entries(table).map(player => (
+          <Row key={player[0]} playerName={player[0]} stats={player[1]} />
         ))}
       </div>
     )

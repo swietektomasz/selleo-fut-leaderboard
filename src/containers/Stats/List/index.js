@@ -63,4 +63,7 @@ export default withRouter(
 List.propTypes = {
   getStats: PropTypes.func,
   stats: PropTypes.object,
+  loading: PropTypes.bool,
+  error: PropTypes.bool,
+  history: PropTypes.object,
 }

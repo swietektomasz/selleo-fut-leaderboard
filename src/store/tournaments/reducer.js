@@ -6,6 +6,7 @@ import {
   UPDATE_MATCH,
   UPDATE_TOURNAMENT,
   GET_STATS,
+  GET_PLAYER_STATS,
 } from './types'
 
 const tournaments = (
@@ -49,6 +50,14 @@ const tournaments = (
     }
     case GET_STATS: {
       return { ...state, error: false, loading: false, stats: payload }
+    }
+    case GET_PLAYER_STATS: {
+      return {
+        ...state,
+        error: false,
+        loading: false,
+        player: { playerName: 'BB', stats: payload },
+      }
     }
     default:
       return state
