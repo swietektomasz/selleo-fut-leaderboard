@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import isEmpty from 'lodash/isEmpty'
 
 import { getTournament, updateTournament } from '../../../store/tournaments/actions'
 import MatchForm from './Form'
@@ -19,7 +18,7 @@ class Show extends Component {
     } = this.props
 
     if (
-      isEmpty(activeTournament) ||
+      activeTournament.id === undefined ||
       (activeTournament && activeTournament.id.toString() !== id.toString())
     ) {
       getTournament(id)

@@ -110,7 +110,7 @@ export const getStats = () => {
   return dispatch => {
     dispatch(_getTournamentsLoading)
 
-    client('/stats', {})
+    client('stats', {})
       .then(data => dispatch(_getStats(data)))
       .catch(error => dispatch(_getTournamentsError(error)))
   }

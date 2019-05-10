@@ -4,16 +4,22 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import { getPlayerStats } from '../../../store/tournaments/actions'
+import Table from './Table'
 
 class Show extends Component {
   componentDidMount = () => {
-    const { getPlayerStats } = this.props
+    const {
+      getPlayerStats,
+      history: {
+        location: { state },
+      },
+    } = this.props
 
-    getPlayerStats('BB')
+    getPlayerStats(state)
   }
 
   render() {
-    const { loading, error, stats } = this.props
+    const { loading, error, playerStats } = this.props
 
     if (loading) {
       return <div>Loading</div>
@@ -23,13 +29,17 @@ class Show extends Component {
       return <div>Error</div>
     }
 
-    return <div className="matches" />
+    return (
+      <div className="matches">
+        {playerStats.map(stats => <Table key={Object.keys(stats)} playerStats={stats} />)}
+      </div>
+    )
   }
 }
 
-const mapStateToProps = ({ tournaments: { stats, loading, error } }) => {
+const mapStateToProps = ({ tournaments: { playerStats, loading, error } }) => {
   return {
-    stats,
+    playerStats,
     loading,
     error,
   }
@@ -47,7 +57,9 @@ export default withRouter(
 )
 
 Show.propTypes = {
-  getPlayerStats: PropTypes.func,
-  loading: PropTypes.bool,
   error: PropTypes.bool,
+  getPlayerStats: PropTypes.func,
+  history: PropTypes.object,
+  loading: PropTypes.bool,
+  playerStats: PropTypes.object,
 }

@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+
 import Row from './Row'
 
 class Table extends Component {
   render() {
-    const {
-      activeTournament: { table },
-    } = this.props
+    const { playerStats } = this.props
 
     return (
       <div>
@@ -22,7 +21,7 @@ class Table extends Component {
           <div className="column">Goals Difference</div>
           <div className="column">Points</div>
         </div>
-        {Object.entries(table).map(player => (
+        {Object.entries(playerStats).map(player => (
           <Row key={player[0]} playerName={player[0]} stats={player[1]} />
         ))}
       </div>
@@ -40,5 +39,5 @@ export default connect(
 )(Table)
 
 Table.propTypes = {
-  activeTournament: PropTypes.object,
+  playerStats: PropTypes.object,
 }

@@ -24,14 +24,14 @@ class List extends Component {
     return (
       <div className="container">
         <div className="cards">
-          {Object.entries(stats).map(player => (
+          {Object.entries(stats).map(([playerName]) => (
             <div
               className="match__header"
-              key={player[0]}
-              onClick={() => history.push(`/stats/${player[0]}`)}
+              key={playerName}
+              onClick={() => history.push(`/stats/${playerName}`, playerName)}
             >
               <div className="match__title">
-                <h3>{player[0]}</h3>
+                <h3>{playerName}</h3>
               </div>
             </div>
           ))}
@@ -61,9 +61,9 @@ export default withRouter(
 )
 
 List.propTypes = {
-  getStats: PropTypes.func,
-  stats: PropTypes.object,
-  loading: PropTypes.bool,
   error: PropTypes.bool,
+  getStats: PropTypes.func,
   history: PropTypes.object,
+  loading: PropTypes.bool,
+  stats: PropTypes.object,
 }
