@@ -61,5 +61,5 @@ Show.propTypes = {
   getPlayerStats: PropTypes.func,
   history: PropTypes.object,
   loading: PropTypes.bool,
-  playerStats: PropTypes.object,
+  playerStats: PropTypes.array,
 }

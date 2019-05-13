@@ -65,5 +65,5 @@ List.propTypes = {
   getStats: PropTypes.func,
   history: PropTypes.object,
   loading: PropTypes.bool,
-  stats: PropTypes.object,
+  stats: PropTypes.array,
 }

@@ -10,7 +10,14 @@ import {
 } from './types'
 
 const tournaments = (
-  state = { error: false, loading: true, nodes: [], activeTournament: { matches: [] }, stats: {} },
+  state = {
+    error: false,
+    loading: true,
+    nodes: [],
+    activeTournament: { matches: [], table: {} },
+    stats: [],
+    playerStats: [],
+  },
   { payload, type },
 ) => {
   switch (type) {
