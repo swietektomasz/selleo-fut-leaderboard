@@ -22,9 +22,9 @@ class Table extends Component {
           <div className="column">Goals Difference</div>
           <div className="column">Points</div>
         </div>
-        {Object.entries(table).map(([playerName, playerData]) => (
-          <Row key={playerName} playerName={playerName} stats={playerData} />
-        ))}
+        {Object.entries(table).map(([playerName, playerData]) => {
+          return <Row key={playerName} playerName={playerName} stats={playerData} />
+        })}
       </div>
     )
   }

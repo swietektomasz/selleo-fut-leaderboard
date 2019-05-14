@@ -7,6 +7,7 @@ import {
   UPDATE_TOURNAMENT,
   GET_STATS,
   GET_PLAYER_STATS,
+  GET_SUMMARY,
 } from './types'
 
 const tournaments = (
@@ -17,6 +18,11 @@ const tournaments = (
     activeTournament: { matches: [], table: {} },
     stats: [],
     playerStats: [],
+    summary: {
+      Kovson: { 0: [], 1: [], 2: [] },
+      Czikarito: { 0: [], 1: [], 2: [] },
+      BB: { 0: [], 1: [], 2: [] },
+    },
   },
   { payload, type },
 ) => {
@@ -65,6 +71,24 @@ const tournaments = (
         loading: false,
         playerStats: payload,
       }
+    }
+    case GET_SUMMARY: {
+      const { summary } = state
+      const data = payload.map(tournament => {
+        return Object.entries(tournament.table).map((table, index) => {
+          return { [table[0]]: index }
+        })
+      })
+
+      const order = data.reduce((previous, current) => {
+        return previous.concat(current)
+      })
+
+      order.forEach(obj => {
+        summary[Object.keys(obj)][Object.values(obj)].push(true)
+      })
+
+      return { ...state, summary }
     }
     default:
       return state
