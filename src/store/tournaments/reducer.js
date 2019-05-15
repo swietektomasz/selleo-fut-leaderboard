@@ -18,11 +18,7 @@ const tournaments = (
     activeTournament: { matches: [], table: {} },
     stats: [],
     playerStats: [],
-    summary: {
-      Kovson: { 0: [], 1: [], 2: [] },
-      Czikarito: { 0: [], 1: [], 2: [] },
-      BB: { 0: [], 1: [], 2: [] },
-    },
+    summary: {},
   },
   { payload, type },
 ) => {
@@ -73,23 +69,38 @@ const tournaments = (
       }
     }
     case GET_SUMMARY: {
-      const { summary } = state
-      const data = payload.map(tournament => {
-        return Object.entries(tournament.table).map((table, index) => {
-          return { [table[0]]: index }
-        })
-      })
+      const defaultPoints = { 0: 0, 1: 0, 2: 0 }
+      const summary = []
 
-      const order = data.reduce((previous, current) => {
-        return previous.concat(current)
-      })
+      const data = payload.map(({ table }) =>
+        Object.entries(table).map(([playerName], position) => ({ [playerName]: position })),
+      )
+      const order = data.reduce((previous, current) => previous.concat(current), [])
 
       order.forEach(obj => {
-        summary[Object.keys(obj)][Object.values(obj)].push(true)
+        const playerName = Object.keys(obj)[0]
+        const playerPosition = Object.values(obj)[0]
+        const currentPlayer = summary.find(player => playerName === player.name)
+        const currentPlayerIndex = summary.findIndex(player => playerName === player.name)
+
+        if (!currentPlayer) {
+          const curr = {
+            ...defaultPoints,
+            name: playerName,
+            [playerPosition]: 1,
+          }
+          summary.push(curr)
+        } else {
+          summary[currentPlayerIndex] = {
+            ...currentPlayer,
+            [playerPosition]: currentPlayer[playerPosition] + 1,
+          }
+        }
       })
 
       return { ...state, summary }
     }
+
     default:
       return state
   }

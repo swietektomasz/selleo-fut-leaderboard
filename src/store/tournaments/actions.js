@@ -74,7 +74,7 @@ export const createTournament = () => {
     dispatch(_getTournamentsLoading)
 
     client('/tournaments', { method: 'POST' })
-      .then(data => console.log(data))
+      .then(data => console.info(data))
       .catch(error => dispatch(_getTournamentsError(error)))
   }
 }

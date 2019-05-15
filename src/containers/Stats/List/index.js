@@ -57,6 +57,6 @@ List.propTypes = {
   getStats: PropTypes.func,
   getTournaments: PropTypes.func,
   loading: PropTypes.bool,
-  summary: PropTypes.object,
+  summary: PropTypes.any,
   stats: PropTypes.any,
 }

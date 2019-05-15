@@ -20,7 +20,6 @@ class Show extends Component {
 
   render() {
     const { loading, error, playerStats } = this.props
-    console.log(playerStats)
 
     const statsBody = playerStats.map(stat => {
       return Object.entries(stat).map(data => {
