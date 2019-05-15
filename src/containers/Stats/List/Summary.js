@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const Summary = props => {
   const { stats } = props
@@ -20,3 +21,7 @@ const Summary = props => {
 }
 
 export default Summary
+
+Summary.propTypes = {
+  stats: PropTypes.object,
+}

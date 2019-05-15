@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 import { getPlayerStats } from '../../../store/tournaments/actions'
-import Table from '../../../components/Table'
+import Table from './Table'
 
 class Show extends Component {
   componentDidMount = () => {
@@ -21,12 +21,6 @@ class Show extends Component {
   render() {
     const { loading, error, playerStats } = this.props
 
-    const statsBody = playerStats.map(stat => {
-      return Object.entries(stat).map(data => {
-        return Object.values(data[1])
-      })
-    })
-
     if (loading) {
       return <div>Loading</div>
     }
@@ -34,10 +28,9 @@ class Show extends Component {
     if (error) {
       return <div>Error</div>
     }
-
     return (
       <div className="matches">
-        {statsBody.map((statistics, index) => <Table body={statistics} key={index} />)}
+        {playerStats.map(stats => <Table key={Object.keys(stats)} stats={stats} />)}
       </div>
     )
   }
