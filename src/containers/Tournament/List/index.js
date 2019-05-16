@@ -20,9 +20,10 @@ class List extends Component {
       return <div>Loading</div>
     }
 
-    if (error) {
-      return <div>Error</div>
-    }
+    // if (error) {
+    //   console.log(error.tournament[0])
+    //   return <div>Error</div>
+    // }
 
     return (
       <div className="container">
@@ -36,6 +37,7 @@ class List extends Component {
             />
           ))}
         </div>
+        {error ? <div>{error.tournament[0]}</div> : null}
         <Create />
       </div>
     )

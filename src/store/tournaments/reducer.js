@@ -8,6 +8,7 @@ import {
   GET_STATS,
   GET_PLAYER_STATS,
   GET_SUMMARY,
+  CREATE_TOURNAMENT,
 } from './types'
 
 const tournaments = (
@@ -27,7 +28,7 @@ const tournaments = (
       return { ...state, error: false, loading: false, nodes: payload }
     }
     case GET_TOURNAMENTS_ERROR: {
-      return { ...state, error: payload, loading: false, nodes: [] }
+      return { ...state, error: payload, loading: false, nodes: [...state.nodes] }
     }
     case GET_TOURNAMENTS_LOADING: {
       return { ...state, error: false, loading: true, nodes: [] }
@@ -99,6 +100,9 @@ const tournaments = (
       })
 
       return { ...state, summary }
+    }
+    case CREATE_TOURNAMENT: {
+      return { ...state, nodes: [...state.nodes, payload] }
     }
 
     default:

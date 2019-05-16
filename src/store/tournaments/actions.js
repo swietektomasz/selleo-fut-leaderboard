@@ -8,6 +8,7 @@ import {
   GET_STATS,
   GET_PLAYER_STATS,
   GET_SUMMARY,
+  CREATE_TOURNAMENT,
 } from './types'
 import client from '../../utils/apiClient'
 
@@ -56,6 +57,11 @@ const _getSummary = payload => ({
   payload,
 })
 
+const _createTournament = payload => ({
+  type: CREATE_TOURNAMENT,
+  payload,
+})
+
 export const getTournaments = () => {
   return dispatch => {
     dispatch(_getTournamentsLoading)
@@ -74,7 +80,7 @@ export const createTournament = () => {
     dispatch(_getTournamentsLoading)
 
     client('/tournaments', { method: 'POST' })
-      .then(data => console.info(data))
+      .then(data => dispatch(_createTournament(data)))
       .catch(error => dispatch(_getTournamentsError(error)))
   }
 }
