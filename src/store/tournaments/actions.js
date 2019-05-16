@@ -66,7 +66,7 @@ export const getTournaments = () => {
   return dispatch => {
     dispatch(_getTournamentsLoading)
 
-    client('/tournaments', {})
+    client('tournaments', {})
       .then(data => {
         dispatch(_setTournaments(data))
         dispatch(_getSummary(data))
@@ -79,7 +79,7 @@ export const createTournament = () => {
   return dispatch => {
     dispatch(_getTournamentsLoading)
 
-    client('/tournaments', { method: 'POST' })
+    client('tournaments', { method: 'POST' })
       .then(data => dispatch(_createTournament(data)))
       .catch(error => dispatch(_getTournamentsError(error)))
   }
@@ -89,7 +89,7 @@ export const getTournament = id => {
   return dispatch => {
     dispatch(_getTournamentsLoading)
 
-    client(`/tournaments/${id}`, {})
+    client(`tournaments/${id}`, {})
       .then(data => dispatch(_getTournament(data)))
       .catch(error => dispatch(_getTournamentsError(error)))
   }

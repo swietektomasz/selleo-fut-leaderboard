@@ -1,5 +1,4 @@
-// const API_URL = 'https://shrouded-dawn-25675.herokuapp.com'
-const API_URL = 'http://localhost:3001'
+const API_URL = process.env.REACT_APP_API_URL
 
 const _handleResponse = response =>
   response.text().then(text => {

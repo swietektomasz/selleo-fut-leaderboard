@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getTournaments, createTournament } from '../../../store/tournaments/actions'
 import PropTypes from 'prop-types'
+import get from 'lodash/get'
 
 import Tournament from './Item'
 import Create from './Create'
@@ -20,11 +21,6 @@ class List extends Component {
       return <div>Loading</div>
     }
 
-    // if (error) {
-    //   console.log(error.tournament[0])
-    //   return <div>Error</div>
-    // }
-
     return (
       <div className="container">
         <div className="cards">
@@ -37,7 +33,7 @@ class List extends Component {
             />
           ))}
         </div>
-        {error ? <div>{error.tournament[0]}</div> : null}
+        {error && <div> {get(error, 'tournament[0]', 'An error occured')}</div>}
         <Create />
       </div>
     )
