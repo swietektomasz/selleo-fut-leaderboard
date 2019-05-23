@@ -24,7 +24,7 @@ class Players extends Component {
             <div
               className="match__header"
               key={playerName}
-              onClick={() => history.push(`/stats/${playerName}`, playerName)}
+              onClick={() => history.push(`/stats/${playerName}`)}
             >
               <div className="match__title">
                 <h3>{playerName}</h3>

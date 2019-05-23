@@ -10,12 +10,12 @@ class Show extends Component {
   componentDidMount = () => {
     const {
       getPlayerStats,
-      history: {
-        location: { state },
+      match: {
+        params: { player },
       },
     } = this.props
 
-    getPlayerStats(state)
+    getPlayerStats(player)
   }
 
   render() {

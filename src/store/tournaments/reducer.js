@@ -11,15 +11,19 @@ import {
   CREATE_TOURNAMENT,
 } from './types'
 
+export const defaultState = {
+  error: false,
+  loading: true,
+  nodes: [],
+  activeTournament: { matches: [], table: {} },
+  stats: [],
+  playerStats: [],
+  summary: {},
+}
+
 const tournaments = (
   state = {
-    error: false,
-    loading: true,
-    nodes: [],
-    activeTournament: { matches: [], table: {} },
-    stats: [],
-    playerStats: [],
-    summary: {},
+    ...defaultState,
   },
   { payload, type },
 ) => {
