@@ -4,12 +4,12 @@ import { Switch, Route } from 'react-router-dom'
 import List from './List'
 import Show from './Show'
 
-export default class Tournament extends Component {
+export default class Stats extends Component {
   render() {
     return (
       <Switch>
-        <Route component={Show} path={'/tournaments/:id'} />
-        <Route component={List} path={'/tournaments'} />
+        <Route component={Show} path={'/stats/:player'} />
+        <Route component={List} path={'/stats'} />
       </Switch>
     )
   }
