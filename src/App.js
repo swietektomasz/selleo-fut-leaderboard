@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import Navbar from './components/Navbar'
 import Tournament from './containers/Tournament'
+import Stats from './containers/Stats'
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
             <div className="content">
               <Switch>
                 <Route component={Tournament} path={'/tournaments'} />
+                <Route component={Stats} path={'/stats'} />
               </Switch>
             </div>
           </div>

@@ -1,6 +1,8 @@
 @import './components/Navbar/_navbar'
 @import './containers/Tournament/_list'
 @import './containers/Tournament/_tournament'
+@import './containers/Tournament/_create'
+@import './containers/Tournament/_stats'
   
 .container,
 .content-body
@@ -9,6 +11,10 @@
 
 .navbar-container
   order: -1
+  
+.separator 
+  border-bottom: 1px solid black
+  margin: 10px
 
 @media (min-width: 768px)
   .content-body
